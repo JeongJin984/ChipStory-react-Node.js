@@ -18,6 +18,8 @@ const hashtagAPIRouter = require('./routes/hashtag')
 dotenv.config()
 passportConfig()
 
+const prod = process.env.NODE_ENV === 'production';
+
 //middle-ware
 app.use(morgan('dev'))
 app.use('/', express.static('uploads'))
@@ -53,6 +55,6 @@ app.get('/', (req, res) => {
 	res.send('Hello Server')
 })
 
-app.listen(process.env.NODE_ENV === 'production' ? process.env.PORT : 3065, () => {
+app.listen(prod ? process.env.PORT : 3065, () => {
 	console.log(`server is running on localhost:${process.env.PORT}`);
 })
