@@ -29,7 +29,8 @@
   },
   "scripts": {
     "dev": "nodemon",
-    "sequelize": "sequelize init"
+    "sequelize": "sequelize init",
+    "start": "pm2 start index"
   },
   "keywords": [],
   "author": "",

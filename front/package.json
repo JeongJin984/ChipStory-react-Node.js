@@ -44,7 +44,7 @@
   "scripts": {
     "dev": "nodemon",
     "build": "cross-env ANALYZE=true next build",
-    "start": "cross-env NODE_ENV=production pm2 start server.js"
+    "start": "cross-env NODE_ENV=production pm2 start server"
   },
   "keywords": [],
   "author": "",
