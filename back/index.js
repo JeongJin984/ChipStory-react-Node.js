@@ -53,6 +53,6 @@ app.get('/', (req, res) => {
 	res.send('Hello Server')
 })
 
-app.listen(3065, () => {
-	console.log('server is running on localhost:3065');
+app.listen(process.env.NODE_ENV === 'production' ? process.env.PORT : 3065, () => {
+	console.log(`server is running on localhost:${process.env.PORT}`);
 })
