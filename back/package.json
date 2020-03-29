@@ -30,7 +30,7 @@
   "scripts": {
     "dev": "nodemon",
     "sequelize": "sequelize init",
-    "start": "pm2 start index"
+    "start": "pm2 start index.js"
   },
   "keywords": [],
   "author": "",
