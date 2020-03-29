@@ -44,6 +44,7 @@
   "scripts": {
     "dev": "nodemon",
     "build": "cross-env ANALYZE=true next build",
+    "prestart": "npm run build",
     "start": "cross-env NODE_ENV=production PORT=80 pm2 start server"
   },
   "keywords": [],
