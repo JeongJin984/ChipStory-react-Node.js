@@ -44,6 +44,9 @@ app.use(expressSession({
 app.use(passport.initialize())
 app.use(passport.session())
  
+app.get('/', (req, res) => {
+	res.send('Backend Is Operating!!')
+})
 
 //router
 app.use('/api/user', userAPIRouter)
