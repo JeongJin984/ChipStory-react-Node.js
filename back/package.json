@@ -30,7 +30,7 @@
   "scripts": {
     "dev": "nodemon",
     "sequelize": "sequelize init",
-    "start": "pm2 start index.js"
+    "start": "cross-env NODE_ENV=production PORT=80 pm2 start index.js"
   },
   "keywords": [],
   "author": "",
