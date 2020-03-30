@@ -6,6 +6,8 @@ const cookieParser = require('cookie-parser')
 const expressSession = require('express-session')
 const dotenv = require('dotenv')
 const passport = require('passport')
+const hpp = require('hpp')
+const helmet = require('helmet')
 
 const app = express()
 db.sequelize.sync()
@@ -20,16 +22,30 @@ passportConfig()
 
 const prod = process.env.NODE_ENV === 'production';
 
+if(prod) {
+	app.use(hpp())
+	app.use(helmet())
+	app.use(morgan('combined'))
+	app.use(cors({
+		origin: 'http://15.164.51.62',
+		credentials: true
+
+	}))
+} else {
+	app.use(morgan('dev'))
+	app.use(cors({
+		origin: true,
+		credentials: true
+	}))
+}
+
 //middle-ware
-app.use(morgan('dev'))
+
 app.use('/', express.static('uploads'))
 app.use('/profile/', express.static('profileImage'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(cors({
-	origin: true,
-	credentials: true
-}))
+
 app.use(cookieParser(process.env.COOKIE_SECRET))
 app.use(expressSession({
 	resave: false,
@@ -37,7 +53,8 @@ app.use(expressSession({
 	secret: process.env.COOKIE_SECRET,
 	cookie: {
 		httpOnly: true,
-		secure: false
+		secure: false,
+		domain: prod && '.54.180.56.163' 
 	},
 	name: 'rnbck'
 }))
