@@ -53,7 +53,7 @@ app.use(expressSession({
 	cookie: {
 		httpOnly: true,
 		secure: false,
-		domain: prod && '.54.180.56.163' 
+		domain: prod && '.webworks.kr' 
 	},
 	name: 'rnbck'
 }))
