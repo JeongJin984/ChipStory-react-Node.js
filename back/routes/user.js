@@ -214,7 +214,7 @@ router.get('/:id/posts', async (req, res, next) => {
 })
 router.post('/images', addProfileImage.array('profileImage'), async (req, res, next) => {
 	try {
-		res.json(req.files.map(v => v.filename))
+		res.json(req.files.map(v => v.location))
 	} catch (error) {
 		console.error(error)
 		next(error)
