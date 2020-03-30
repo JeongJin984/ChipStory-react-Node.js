@@ -51,7 +51,7 @@ const signUp = () => {
 
 	return(
 		<div style={{ marginTop: 30}}>
-			<img src="https://tobaccobusiness.com/wp-content/uploads/2017/10/chip-logofc.jpg" style={{ width: 300, height: 100, marginLeft: 250}}></img>
+			<img src="https://tobaccobusiness.com/wp-content/uploads/2017/10/chip-logofc.jpg" style={{ width: 300, height: 100, marginLeft: 200}}></img>
 			<Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
 				<Form.Item 
 					name={['user', 'name']} 
@@ -87,17 +87,27 @@ const signUp = () => {
 					>
 					<Input />
 				</Form.Item>
-				<Form.Item name={['user', 'age']} label="Age" rules={[{ type: 'number', min: 0, max: 99 }]}>
+				<Form.Item 
+					name={['user', 'age']} 
+					label="Age" 
+					rules={[
+						{ type: 'number', min: 0, max: 99 },
+						{ required: true, message: 'Please input your age!'}
+				]}>
 					<InputNumber />
 				</Form.Item>
-				<Form.Item name={['user', 'website']} label="Website">
+				<Form.Item 
+					name={['user', 'website']} 
+					label="Website"
+					rules={[{ required: true, message: 'Please input your git Repo', type: 'email' }]}
+				>
 					<Input />
 				</Form.Item>
 				<Form.Item name={['user', 'introduction']} label="Introduction">
 					<Input.TextArea />
 				</Form.Item>
 				<Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-					<Button type="primary" htmlType="submit">
+					<Button type="primary" htmlType="submit" style={{marginLeft:70, height: 100, width: 200}}>
 						Submit
 					</Button>
 				</Form.Item>

@@ -34,12 +34,18 @@ router.get('/', async (req, res) => {
 })
 router.post('/', async (req, res) => {
   try {
-    const exUser = await db.User.findOne({
+    const exUser1 = await db.User.findOne({
       where: {
         email: req.body.email,
       }
+		})
+		
+		const exUser2 = await db.User.findOne({
+      where: {
+        userId: req.body.userId,
+      }
     })
-    if(exUser) {
+    if(exUser1 || exUser2) {
       return res.status(403).send('Using Id') 
     }
     const hashedPassword = await bcrypt.hash(req.body.password, 12)
