@@ -20,16 +20,15 @@ const hashtagAPIRouter = require('./routes/hashtag')
 dotenv.config()
 passportConfig()
 
-const prod = process.env.NODE_ENV === 'production';
+const prod = process.env.NODE_ENV === 'production'
 
 if(prod) {
 	app.use(hpp())
 	app.use(helmet())
 	app.use(morgan('combined'))
 	app.use(cors({
-		origin: 'http://15.164.51.62',
+		origin: 'http://webworks.kr',
 		credentials: true
-
 	}))
 } else {
 	app.use(morgan('dev'))
