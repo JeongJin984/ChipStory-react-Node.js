@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react'
 import {LeftCircleOutlined, RightCircleOutlined} from '@ant-design/icons';
 import { Carousel } from 'antd'
 import PropTypes from 'prop-types'
-import {backURL} from '../config/config'
 
 const PostImages =  ( {images} ) => {
 	
@@ -34,13 +33,13 @@ const PostImages =  ( {images} ) => {
 	}
 	if(images.length === 1) {
 		return (
-			<img src={`${backURL}/${images[0].src}`}/>
+			<img src={`${images[0].src}`}/>
 		)
 	} else {
 		return (
 			<Carousel>
 				{images.map( (v, i) => (
-					<img src={`${backURL}/${v.src}`}/>
+					<img src={`${v.src}`}/>
 				))}
 			</Carousel>
 				

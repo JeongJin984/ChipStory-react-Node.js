@@ -3,7 +3,6 @@ import { Skeleton, Switch, Card, Avatar } from 'antd';
 import { SmileTwoTone, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileForm from '../components/ProfileForm'
-import {backURL} from '../config/config'
 
 const { Meta } = Card;
 
@@ -40,7 +39,7 @@ const profile = () => {
 						<Meta
 							avatar={
 								<button style={{ border: 'none', backgroundColor:'transparent', cursor: 'pointer'}} onClick={onClickProfileImage}>
-									<Avatar src={me.ProfileImages.length === 0 ? null : `${backURL}/profile/${me.ProfileImages[me.ProfileImages.length - 1].src}`} size={80}/>
+									<Avatar src={me.ProfileImages.length === 0 ? null : `${me.ProfileImages[me.ProfileImages.length - 1].src}`} size={80}/>
 								</button>
 							}
 							title={<span style={{fontSize: 30}}>{me.userId}</span>}
