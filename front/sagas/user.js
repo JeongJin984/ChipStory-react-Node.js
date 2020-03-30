@@ -68,14 +68,15 @@ function signUpAPI(signUpData) {
 
 function* signUp(action) {
 	try {
-		yield call(signUpAPI, action.data)
+		const response = yield call(signUpAPI, action.data)
+		console.dir(response)
 		yield put({
 			type: SIGN_UP_SUCCESS
 		})
 	} catch (error) {
 		yield put({
 			type: SIGN_UP_FAILURE,
-			error: error
+			error: response.data.error
 		})		
 	}
 }

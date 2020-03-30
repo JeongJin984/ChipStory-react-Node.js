@@ -99,7 +99,7 @@ const signUp = () => {
 				<Form.Item 
 					name={['user', 'website']} 
 					label="Website"
-					rules={[{ required: true, message: 'Please input your git Repo', type: 'email' }]}
+					rules={[{ required: true, message: 'Please input your http://git_Repo', type: 'url' }]}
 				>
 					<Input />
 				</Form.Item>
