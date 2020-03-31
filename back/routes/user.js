@@ -46,9 +46,11 @@ router.post('/', async (req, res) => {
       where: {
         userId: req.body.userId,
       }
-    })
-    if(exUser1 || exUser2) {
-			console.log('active')
+		})
+		if(exUser1) {
+			return res.status(403).send('Using E-mail') 
+		}
+    if(exUser2) {
       return res.status(403).send('Using Id') 
     }
     const hashedPassword = await bcrypt.hash(req.body.password, 12)

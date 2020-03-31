@@ -11,12 +11,13 @@ export const initialState = {
 
 	isSignedUp: false,
 	isSigningUp: false,
-	
 	signUpErrorReason: '',
+	userChecked: false,
 
 	me: null,
 	userInfo: null,
 	ProfileImages: []
+	
 }
 
 export const SIGN_UP_REQUEST = 'SIGN_UP_REQUEST'
@@ -126,6 +127,7 @@ export default (state = initialState, action) => {
 				...state,
 				isSigningUp: false,
 				isSignedUp: true,
+				userChecked: true
 			}
 		}
 		case SIGN_UP_FAILURE: {

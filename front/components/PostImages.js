@@ -25,7 +25,6 @@ const PostImages =  ( {images} ) => {
 					<img src={prod ? `${v.src}` : `${backURL}/${v.src}`}/>
 				))}
 			</Carousel>
-				
 		)
 	}
 }
