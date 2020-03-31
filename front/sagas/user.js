@@ -69,7 +69,7 @@ function signUpAPI(signUpData) {
 function* signUp(action) {
 	try {
 		const response = yield call(signUpAPI, action.data)
-		console.dir(response)
+		console.log(response)
 		yield put({
 			type: SIGN_UP_SUCCESS
 		})

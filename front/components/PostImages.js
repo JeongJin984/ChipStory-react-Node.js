@@ -2,30 +2,13 @@ import React, { useState, useEffect, useRef, useCallback } from 'react'
 import {LeftCircleOutlined, RightCircleOutlined} from '@ant-design/icons';
 import { Carousel } from 'antd'
 import PropTypes from 'prop-types'
+import { backURL } from '../config/config'
+
+const prod = (process.env.NODE_ENV === 'production')
 
 const PostImages =  ( {images} ) => {
-	
-	const [imageIndex, setImageIndex] = useState(0)
-	
 
-	const onClickImage = useCallback(
-		(direction) => (e) => {
-			e.preventDefault()
-			console.log(direction)
-			console.log()
-			if(direction) {
-				if(imageIndex !== 0) {
-					setImageIndex(prev => prev - 1)
-				}
-			} else {
-				if(imageIndex !== images.length - 1) {
-					setImageIndex(prev => prev + 1)
-				}
-			}
-		},
-		[imageIndex],
-	)
-
+	console.log(prod)
 	if(!images) {
 		return(
 			null
@@ -33,13 +16,13 @@ const PostImages =  ( {images} ) => {
 	}
 	if(images.length === 1) {
 		return (
-			<img src={`${images[0].src}`}/>
+			<img src={prod ? `${images[0].src}` : `${backURL}/${images[0].src}`}/>
 		)
 	} else {
 		return (
 			<Carousel>
 				{images.map( (v, i) => (
-					<img src={`${v.src}`}/>
+					<img src={prod ? `${v.src}` : `${backURL}/${v.src}`}/>
 				))}
 			</Carousel>
 				

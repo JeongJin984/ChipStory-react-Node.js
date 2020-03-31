@@ -3,8 +3,10 @@ import React, { useRef, useCallback } from 'react'
 import { Input, Button, Form } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { ADD_PROFILE_IMAGE_REQUEST, REMOVE_PROFILE_IMAGE, MODIFY_PROFILE_REQUEST } from '../reducers/user'
+import { backURL } from '../config/config'
 
 const { TextArea } = Input
+const prod = (process.env.NODE_ENV === 'production')
 
 const ProfileForm = () => {
 
@@ -80,7 +82,7 @@ const ProfileForm = () => {
 			<div>
 				{ProfileImages.map( (v, i) => (
 					<div key={v} style={{display: 'inline-block'}}>
-						<img src={`${v}`} style={{width: '200px'}} alt={v} />
+						<img src={prod ? `${v}` : `${backURL}/profile/${v}`} style={{width: '200px'}} alt={v} />
 						<div>
 							<Button onClick={onClickRemoveImage(i)}>Remove</Button>
 						</div>

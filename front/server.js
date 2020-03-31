@@ -16,6 +16,7 @@ dotenv.config()
 app.prepare()
 	.then(() => {
 		 const server = express()
+		 console.log(prod)
 		 server.use(morgan('dev'))
 		 server.use(express.json())
 		 server.use(express.urlencoded({ extended: true }))

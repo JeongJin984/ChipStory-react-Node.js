@@ -40,7 +40,7 @@ const loginForm = () => {
 
 	return(
 		<div style={{ paddingLeft: 200 }}>
-			<img src="https://tobaccobusiness.com/wp-content/uploads/2017/10/chip-logofc.jpg" style={{ marginLeft: -155 }}></img>
+			<img src="https://tobaccobusiness.com/wp-content/uploads/2017/10/chip-logofc.jpg" style={{ marginLeft: -155 }}/>
 			<Form
 				onFinish={onSubmitForm}
     	>

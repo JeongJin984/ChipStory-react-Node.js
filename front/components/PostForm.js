@@ -4,8 +4,10 @@ import { Input, Button, Form } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { ADD_POST_REQUEST, UPLOAD_IMAGES_REQUEST, REMOVE_IMAGE } from '../reducers/post'
 
+import { backURL } from '../config/config'
 const { TextArea } = Input
 
+const prod = process.env.NODE_ENV === 'production'
 
 
 const postForm = ( key, post ) => {
@@ -82,7 +84,7 @@ const postForm = ( key, post ) => {
 				<div>
 					{imagePaths.map( (v, i) => (
 						<div key={v} style={{display: 'inline-block'}}>
-							<img src={`${v}`} style={{width: '200px'}} alt={v} />
+							<img src={ prod ? `${v}` : `${backURL}/${v}`} style={{width: '200px'}} alt={v} />
 							<div>
 								<Button onClick={onClickRemoveImage(i)}>Remove</Button>
 							</div>

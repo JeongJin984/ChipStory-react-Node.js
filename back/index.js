@@ -31,20 +31,20 @@ if(prod) {
 		credentials: true
 	}))
 } else {
+	console.log('active')
 	app.use(morgan('dev'))
 	app.use(cors({
 		origin: true,
 		credentials: true
 	}))
+	app.use('/', express.static('uploads'))
+	app.use('/profile/', express.static('profileImage'))
 }
 
 //middle-ware
 
-app.use('/', express.static('uploads'))
-app.use('/profile/', express.static('profileImage'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-
 app.use(cookieParser(process.env.COOKIE_SECRET))
 app.use(expressSession({
 	resave: false,
@@ -75,5 +75,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(prod ? process.env.PORT : 3065, () => {
-	console.log(`server is running on localhost:${process.env.PORT}`);
+	console.log(`server is running on localhost:${prod ? process.env.PORT : 3065}`);
 })

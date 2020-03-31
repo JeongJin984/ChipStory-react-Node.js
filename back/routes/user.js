@@ -4,6 +4,8 @@ const db = require('../models')
 const bcrypt = require('bcrypt')
 const passport = require('passport')
 const { isLoggedIn, addProfileImage } = require('./middleware')
+
+const prod = process.env.NODE_ENV === 'production'
  
 router.get('/', async (req, res) => {
 	if(!req.user) {
@@ -46,6 +48,7 @@ router.post('/', async (req, res) => {
       }
     })
     if(exUser1 || exUser2) {
+			console.log('active')
       return res.status(403).send('Using Id') 
     }
     const hashedPassword = await bcrypt.hash(req.body.password, 12)
@@ -220,7 +223,7 @@ router.get('/:id/posts', async (req, res, next) => {
 })
 router.post('/images', addProfileImage.array('profileImage'), async (req, res, next) => {
 	try {
-		res.json(req.files.map(v => v.location))
+		res.json(req.files.map(v => prod ? v.location : v.filename))
 	} catch (error) {
 		console.error(error)
 		next(error)

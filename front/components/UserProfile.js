@@ -5,7 +5,10 @@ import { StarOutlined, CreditCardOutlined, SmileOutlined } from '@ant-design/ico
 import { useDispatch, useSelector } from 'react-redux'
 import { LOG_OUT_REQUEST } from '../reducers/user'
 import { POST_LOG_OUT_SUCCESS } from '../reducers/post'
+import { backURL } from '../config/config'
+
 const { Meta } = Card;
+const prod = (process.env.NODE_ENV === 'production')
 
 const IconText = ({ icon, text }) => (
   <span>
@@ -41,7 +44,12 @@ const userProfile = () => {
         <Skeleton loading={false} avatar active>
           <Meta
             avatar={
-              <Avatar src={me.ProfileImages.length === 0 ? null : `${me.ProfileImages[me.ProfileImages.length - 1].src}`} size={50}/>
+              <Avatar 
+                src={me.ProfileImages.length === 0 ? null : 
+                      (prod ? `${me.ProfileImages[me.ProfileImages.length - 1].src}` : 
+                        `${backURL}/profile/${me.ProfileImages[me.ProfileImages.length - 1].src}`)} 
+                size={50}
+              />
             }
             title={<span style={{fontSize: 18}}>{me.userId}</span>}
             description={me.introduction}

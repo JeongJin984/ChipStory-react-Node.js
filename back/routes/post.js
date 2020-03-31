@@ -6,6 +6,8 @@ const multer = require('multer')
 const path = require('path')
 // ->/api/post
 
+const prod = process.env.NODE_ENV === 'production' 
+
 router.post('/', isLoggedIn, upload.none(), async (req, res) => {
 	try {
 		const hashtags = req.body.content.match(/#[^\s]+/g)
@@ -49,7 +51,7 @@ router.post('/', isLoggedIn, upload.none(), async (req, res) => {
 
 router.post('/images', upload.array('image'), (req, res) => {
 	console.log(req.files)
-	res.json(req.files.map(v => v.location))
+	res.json(req.files.map(v => prod ? v.location : v.filename))
 })
 router.get('/:id/comments', async (req, res, next) => {
 	try {
